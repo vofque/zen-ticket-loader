@@ -1,0 +1,43 @@
+plugins {
+    id "application"
+}
+
+apply plugin: 'scala'
+apply plugin: 'java'
+
+group 'org.vfq'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    mainClass = "org.vfq.zenticketloader.Main"
+}
+
+application {
+    mainClassName = mainClass
+}
+
+dependencies {
+    compile group: 'org.scala-lang', name: 'scala-library', version: '2.13.4'
+
+    // Config
+    compile group: 'com.typesafe', name: 'config', version: '1.4.1'
+
+    // Akka
+    compile group: 'com.typesafe.akka', name: 'akka-actor-typed_2.13', version: '2.6.10'
+    compile group: 'com.typesafe.akka', name: 'akka-stream_2.13', version: '2.6.10'
+    compile group: 'com.typesafe.akka', name: 'akka-http_2.13', version: '10.2.3'
+
+    // Json
+    compile group: 'io.circe', name: 'circe-core_2.13', version: '0.13.0'
+    compile group: 'io.circe', name: 'circe-generic_2.13', version: '0.13.0'
+    compile group: 'io.circe', name: 'circe-parser_2.13', version: '0.13.0'
+    compile group: 'de.heikoseeberger', name: 'akka-http-circe_2.13', version: '1.35.3'
+
+    // Logging
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'com.typesafe.scala-logging', name: 'scala-logging_2.13', version: '3.9.2'
+}
