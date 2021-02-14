@@ -8,11 +8,11 @@ It periodically loads batches of tickets by clients in parallel and sends them i
 
 Build:
 ```
-./gradlew build
+gradle build
 ```
 Launch:
 ```
-./gradlew run
+gradle run
 ```
 Add client and start loading tickets from current moment:
 ```
