@@ -1,6 +1,6 @@
 package org.vfq.zenticketloader.model
 
-import org.vfq.zenticketloader.actor.Committer
+import org.vfq.zenticketloader.stream.Committer
 
 /**
  * Ticket with a corresponding committer.
