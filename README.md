@@ -19,6 +19,7 @@ Add client and start loading tickets from current moment:
 PUT http://localhost:8080/client
 {
     "id": "<client-id>",
+    "domain": "<client-domain>",
     "token": "<zendesk-access-token>"
 }
 ```
@@ -27,6 +28,7 @@ Add client and start loading tickets from a specific start time:
 PUT http://localhost:8080/client
 {
     "id": "<client-id>",
+    "domain": "<client-domain>",
     "token": "<zendesk-access-token>",
     "lastUpdateTime": <start-time>
 }
@@ -36,6 +38,7 @@ Add client and start loading tickets with a specific cursor:
 PUT http://localhost:8080/client
 {
     "id": "<client-id>",
+    "domain": "<client-domain>",
     "token": "<zendesk-access-token>",
     "cursor": "<cursor>"
 }

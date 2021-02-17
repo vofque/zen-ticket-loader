@@ -6,6 +6,7 @@ package org.vfq.zenticketloader.model
  */
 case class ClientState(
     id: String,
+    domain: String,
     token: String,
     cursor: Option[String],
     lastUpdateTime: Option[Long]

@@ -55,12 +55,12 @@ class ClientTicketLoader(
     clientState.cursor
       .map { cursor =>
         log.info("Getting tickets for client {} at cursor {}", clientState.id, cursor)
-        httpClient.getNextPage(cursor, clientState.token)
+        httpClient.getNextPage(cursor, clientState.domain, clientState.token)
       }
       .getOrElse {
         val startTime: Long = clientState.lastUpdateTime.getOrElse(Instant.now.getEpochSecond)
         log.info("Getting tickets for client {} since {}", clientState.id, Instant.ofEpochSecond(startTime))
-        httpClient.getFirstPage(startTime, clientState.token)
+        httpClient.getFirstPage(startTime, clientState.domain, clientState.token)
       }
       .map { ticketPageResponse =>
         log.info("Received {} tickets for client {}", ticketPageResponse.ticketPage.tickets.size, clientState.id)

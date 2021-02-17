@@ -25,22 +25,22 @@ object HttpClient {
  */
 trait HttpClient {
 
-  def getFirstPage(startTime: Long, token: String): Future[TicketPageResponse]
-  def getNextPage(cursor: String, token: String): Future[TicketPageResponse]
+  def getFirstPage(startTime: Long, domain: String, token: String): Future[TicketPageResponse]
+  def getNextPage(cursor: String, domain: String, token: String): Future[TicketPageResponse]
 }
 
 class AkkaHttpClient(config: Config)(implicit system: ActorSystem, ec: ExecutionContext) extends HttpClient {
 
   private val url: String = config.getString("zendesk.tickets-url")
 
-  override def getFirstPage(startTime: Long, token: String): Future[TicketPageResponse] = {
-    val uri = Uri(url).withQuery(Query("start_time" -> startTime.toString))
+  override def getFirstPage(startTime: Long, domain: String, token: String): Future[TicketPageResponse] = {
+    val uri = Uri(url.format(domain)).withQuery(Query("start_time" -> startTime.toString))
     val request: HttpRequest = pageRequest(uri, token)
     getPageResponse(request)
   }
 
-  override def getNextPage(cursor: String, token: String): Future[TicketPageResponse] = {
-    val uri = Uri(url).withQuery(Query("cursor" -> cursor))
+  override def getNextPage(cursor: String, domain: String, token: String): Future[TicketPageResponse] = {
+    val uri = Uri(url.format(domain)).withQuery(Query("cursor" -> cursor))
     val request: HttpRequest = pageRequest(uri, token)
     getPageResponse(request)
   }
